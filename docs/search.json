@@ -1,0 +1,27 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this Site",
+    "section": "",
+    "text": "The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python."
+  },
+  {
+    "objectID": "refdump.html",
+    "href": "refdump.html",
+    "title": "Reference Parking Lot",
+    "section": "",
+    "text": "This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.\nThe references are grouped into broad categories under headings.\n\nSpatial Omics\nSpatial Data https://spatialdata.scverse.org/en/stable/ Mainly an object type to be used with different spatial omics data. It is still under development so the API may be subject to change. Uses anndata object to hold expression/fluorescence values so can be used with most scanpy-type analysis packages (scVI https://scvi-tools.org, scanpy https://scanpy.readthedocs.io/en/stable/, squidpy https://squidpy.readthedocs.io/en/stable/)\nSpaTopic https://xiyupeng.github.io/SpaTopic/ An R package for spatial topic modeling developed by Xiyu Peng. SpaTopic only requires cell type label and cell location, and can work across multiple samples. Works well with MIF data but could probably be used with other methods as well as long as cell type and location are known.\n\n\nClick for Citation\n\nPeng, X., Smithy, J.W., Yosofvand, M. et al. Scalable topic modelling decodes spatial tissue architecture for large-scale multiplexed imaging analysis. Nat Commun 16, 6619 (2025). https://doi.org/10.1038/s41467-025-61821-y\n\n\n\nJupyter\nJupyter widgets w/ plotly https://quarto.org/docs/interactive/widgets/jupyter.html"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Resource Guide on Python for Omics Analysis",
+    "section": "",
+    "text": "About this Site\nThe purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python.\nMost tutorials will be in quarto or jupyter notebook format and will have code-copy enabled.",
+    "crumbs": [
+      "Home",
+      "A Resource Guide on Python for Omics Analysis"
+    ]
+  }
+]

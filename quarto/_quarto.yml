@@ -1,0 +1,53 @@
+project:
+  type: website
+  title: "Intro to Python for Omics Data Analysis"
+  execute-dir: project
+  output-dir: ../docs
+
+
+website:
+  title: "Intro to Python for Omics Data Analysis"
+  announcement: 
+    content: "**Notice** This website is a work in progress!"
+    position: below-navbar
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - text: Extras
+        icon: backpack-fill
+        menu:
+          - refdump.qmd
+
+    
+    right: 
+      - icon: github
+        href: https://github.com/daniv-20/IntroToPythonForOmicsDataAnalysis
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents: 
+      - index.qmd
+      
+  page-navigation: true
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    dark:
+      - darkly
+      - brand
+    css: styles.css
+    toc: true
+    code-copy: true
+  
+date: today
+date-format: iso
+
+
+

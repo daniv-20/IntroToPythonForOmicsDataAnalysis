@@ -15,6 +15,14 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - text: Basics
+        icon: file-code-fill
+        menu:
+          - gettingstarted.qmd
+      - text: Advanced
+        icon: file-code
+        menu:
+          - geojson_annot.qmd
       - text: Extras
         icon: backpack-fill
         menu:

@@ -1,0 +1,51 @@
+---
+title: "Getting Started with Python"
+author: "Dani V"
+---
+
+This tutorial explains some ways to get started with using Python, including installation, setup, IDEs, and virtual environments (venv/conda, I prefer venv, many use conda). 
+
+This is a bare-bones tutorial, but there are others out there that explain these things in more depth. *This tutorial assumes you have the ability to download and install files on your machine, which may not be true for some organization managed devices/compute clusters!* 
+
+# Step 1: Installing Python
+
+Python can be installed from <https://www.python.org/downloads/>. Please choose the download that best matches your device OS (MacOS, Windows, Unix, etc). 
+
+The downloads website will default to the most recent version of Python, but you can scroll down to find other versions. Please note that you may run into package dependency issues when using some older tools or open-source tools that have not been updated for the most recent python version. 
+
+As of writing this, my preference is to use Python 3.10 or Python 3.11. It is possible to have multiple python installations on the same machine and either venv<https://docs.python.org/3/library/venv.html> or conda<https://www.anaconda.com/docs/getting-started/miniconda/main> to manage which version of python you want to use for a given project. 
+
+<div class="callout-warning"> 
+## MAKE SURE YOUR PYTHON EXECUTABLE IS ADDED TO THE SYSTEM PATH
+I have made this mistake too many times. If your python executable is not in your system path, you can run into problems using python. This tutorial explains how to add your Python to the system path for various OS <https://realpython.com/add-python-to-path/>. 
+</div>
+
+Python can also be installed using conda if you choose. I would recommend miniconda <https://www.anaconda.com/docs/getting-started/miniconda/main> if you decide to go the conda route as the full anaconda installation is rather large and clunky. The miniconda tutorial from the link above is pretty comprehensive so I will not rehash it here. 
+
+# Step 2: Choosing your Integrated Development Environment (IDE)
+
+Choosing an IDE is a personal preference. There are many free and paid IDEs out there, each with their own pros and cons.
+
+Because I use both R and Python in my work, I prefer to use Positron <https://positron.posit.co/download.html>, a relatively new IDE from Posit that combines aspects of VSCode <https://code.visualstudio.com> (including most VSCode extensions) and RStudio. Positron is free to download and works well on both Windows and MacOS machines in my experience. 
+
+Most of the tutorials here should be valid regardless of your choice of IDE, however I may reference certain extensions or tools that are more specific to Positron/VSCode since those are what I am familiar with. 
+
+## Aside: Setting up your IDE - Quality of life things
+
+Many IDEs (including Positron, VSCode and R) are very customizable so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account. 
+
+Some things to customize include: 
+    - Theme (ex: dark mode/light mode)
+    - Extensions (ex: csv viewer, pdf viewer, quarto, Github)
+    - Editor Layout (ex: console, terminal, plot viewer, variables)
+
+As you spend more time using your IDE you can change your customizations to better suit your needs. 
+
+For those using Positron/VS Code I would recommend the following extensions
+    - Jupyter
+    - Github Pull Requests
+    - Quarto
+
+
+
+

@@ -5,8 +5,15 @@ author: "Dani V"
 
 # About this Site
 
-The purpose of this website is to serve as a resource guide and set of notes/tutorials for *'omics analysis'* in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python. 
+The purpose of this website is to serve as a resource guide and set of notes/tutorials for *'omics analysis'* in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!). 
 
-Most tutorials will be in quarto or jupyter notebook format and will have code-copy enabled. 
+Most tutorials will be in quarto or jupyter notebook format and will have code-copy enabled! 
+
+There is a 'getting started' tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!
+
+Check out the resources page for links to packages etc. that are interesting or might be helpful for omics analysis. 
+
+As a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I'll be including new-to-me methods as I learn them. 
+
 
 

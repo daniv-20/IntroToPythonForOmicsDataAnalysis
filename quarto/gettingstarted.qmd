@@ -26,13 +26,15 @@ Python can also be installed using conda if you choose. I would recommend minico
 
 Choosing an IDE is a personal preference. There are many free and paid IDEs out there, each with their own pros and cons.
 
-Because I use both R and Python in my work, I prefer to use Positron <https://positron.posit.co/download.html>, a relatively new IDE from Posit that combines aspects of VSCode <https://code.visualstudio.com> (including most VSCode extensions) and RStudio. Positron is free to download and works well on both Windows and MacOS machines in my experience. 
+Because I use both R and Python in my work, I prefer to use Positron <https://positron.posit.co/download.html>, a relatively new IDE from Posit that combines aspects of VSCode <https://code.visualstudio.com> (including most VSCode extensions) and RStudio. Positron is free to download and works well on both Windows and MacOS machines in my experience. **If you do not already have another IDE you prefer, I would recommend giving Positron a try! I will include positron screenshots where relevant in these tutorials.**
 
 Most of the tutorials here should be valid regardless of your choice of IDE, however I may reference certain extensions or tools that are more specific to Positron/VSCode since those are what I am familiar with. 
 
+<span style="color:#002569">Now is a good time to open your IDE if you haven't yet!</span>
+
 ## Aside: Setting up your IDE - Quality of life things
 
-Many IDEs (including Positron, VSCode and R) are very customizable so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account. 
+Many IDEs (including Positron, VSCode and R) are very customizable, so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account. 
 
 Some things to customize include: 
     - Theme (ex: dark mode/light mode)
@@ -46,6 +48,117 @@ For those using Positron/VS Code I would recommend the following extensions
     - Github Pull Requests
     - Quarto
 
+Jupyter notebooks and quarto documents both allow you to combine code chunks with normal text. (I also built this website with Quarto!!) Having a csv viewer in your IDE is helpful, but not a requirement. 
+
+It is also possible to configure your IDE to play well with git/github and allow remote-ssh to a compute cluster (stay tuned!!).
+
+# Step 3: Working with Python
+
+Depending on your IDE, you may have to install an extension to work with Python. Other than that, if you added Python to the system path correctly, you sould be ready to go! 
+
+If you are working with Positron, you should see your Python version (or the word 'Session') at the top left of the window. If you click that box, you can change what version you're using.
+
+## Creating a Project Folder
+
+Focusing on Positron/VSCode (the user interface looks almost identical for both of them), you would typically start a project by opening or creating a project folder. 
+
+For now, create a folder called 'BeginningPython' and open it in your IDE. 
+
+<details>
+<summary> Creating/Opening a folder in Positron </summary>
+To create a new folder, click the 'New Folder' icon shown below.
+
+![New Folder Icon](./CreateNewFolder.png)
+
+To open a folder in Positron, you click the 'Open Folder' icon shown below. 
+
+![Open Folder Icon](./OpenFolder.png)
+</details>
+
+## Creating a python script
+
+Python scripts use the extension `.py`. To create a Python script in your IDE, click on the `New File` icon and, in the new file's name bar, type `first_python.py`. 
+
+To open this new file, click on it. 
+
+<div style="color:#999999"> 
+**Aside:** Because the `.py` extension is what tells the computer that a file is supposed to be a python script, it is technically possible to create python scripts in a simple text editor by naming the file with the `.py` extension. 
+</div>
+
+To get started, let's write a simple print statement and do some basic math. 
+
+In your python script, write the following. 
+
+```{.python}
+print("hello world")
+
+x = 1
+y = -7
+
+print(f"x - y = {x-y}")  #<1> 
+
+```
+1. The 'f' is not a typo! This is an f string, which lets us add results into a print statement. We'll discuss f-strings later. 
 
 
+## Running Python Scripts
 
+There are multiple ways to run your python script. If you are working in Positron, you can highlight the lines of code you want to run and press `ctrl + return` (true for Windows and MacOS).
+
+The method above is best for running a few lines at a time. To run the full file, click the 'run' button on your IDE. In Positron, it's typically located at the top left (right below the python script tab). 
+
+** insert screenshot **
+
+After running the demo code, you get: 
+```{python}
+print("hello world")
+
+x = 1
+y = -7
+
+print(f"x - y = {x-y}")
+
+```
+
+### From command line/terminal
+
+You can also run python scripts from the command line. If you are using Positron, click on the "TERMINAL" tab **add img**. In the terminal, you should see the name of your working directory (the folder your 'first_python.py' document is in.) **show another image**
+
+The 'scripting language' of the terminal is called 'bash' **make sure this is correct**. If you are working on MAC, you might have to do `python3 first_python.py` instead.
+
+```{.bash}
+
+python first_python.py
+
+```
+
+### With a bash script (.sh file)
+
+Finally, you can run one or multiple python files using a bash script (.sh file). This is a bit more involved so it will be included in another tutorial **link here when available**.
+
+# Congratulations
+
+If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to do Things(tm) in Python (aka python data structures and object-oriented vs functional programming). 
+
+## Step 4 (Optional): SSH to Host (Positron)
+
+If you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!
+
+There are two ways to connect Positron to a remote host. The fast way is to click the little >< icon at the bottom left of the screen **add image**. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to `Connect to Host`, `Connect Current Window to Host` or `Update SSH Configuration` **add image**. Click `Connect Current Window to Host` and put the username you use to connect to your compute cluster **add img** and then hit enter and type your password. 
+
+The first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster. 
+
+The other option to connect via Remote-SSH is to click on the search bar **add img** and click `show and run commands`. **add img** or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on `Remote-SSH: Connect Current Window to Host` **add img**. There you put the username you use to connect to your compute cluster **add img** and then hit enter and type your password. 
+
+### Running Python Scripts on the remote host
+
+Once you have connected to the remote host, you should be able to create and run python scripts there in the same manner as on your local machine (provided you have the necessary permissions). 
+
+<div class="callout-warning"> 
+# You can only see files on the host that are stored on a drive the host sees.
+
+If you want to run a file from your local machine on the host machine, you need to upload that file (and the necessary data etc.) to the host machine. 
+
+</div>
+
+You can download files/folders from the host machine to your machine by right-clicking (ctrl+click on mac) and then clicking download. 

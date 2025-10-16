@@ -5,4 +5,8 @@ author: "Dani V"
 
 The purpose of this website is to serve as a resource guide and set of notes/tutorials for 'omics analysis' in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python. 
 
+I'm trying to make this as detailed as possible, so you should not have to know anything about programming to get started! I will link back to past tutorials and other resources during explanations of more complicated topics to keep things less wordy. 
+
+Feel free to make use of the search function to find the information most relevant to you!
+
 

@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dani V">
 <meta name="dcterms.date" content="2025-10-15">
 
-<title>A Resource Guide on Python for Omics Analysis – Intro to Python for Omics Data Analysis</title>
+<title>Reference Parking Lot – Intro to Python for Omics Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">A Resource Guide on Python for Omics Analysis</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Reference Parking Lot</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -185,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">A Resource Guide on Python for Omics Analysis</span></a>
   </div>
 </li>
@@ -199,7 +198,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about-this-site" id="toc-about-this-site" class="nav-link active" data-scroll-target="#about-this-site">About this Site</a></li>
+  <li><a href="#spatial-omics" id="toc-spatial-omics" class="nav-link active" data-scroll-target="#spatial-omics">Spatial Omics</a></li>
+  <li><a href="#jupyter" id="toc-jupyter" class="nav-link" data-scroll-target="#jupyter">Jupyter</a></li>
   </ul>
 </nav>
     </div>
@@ -208,19 +208,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A Resource Guide on Python for Omics Analysis</h1>
+<h1 class="title">Reference Parking Lot</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Dani V </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -237,13 +231,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about-this-site" class="level1">
-<h1>About this Site</h1>
-<p>The purpose of this website is to serve as a resource guide and set of notes/tutorials for <em>‘omics analysis’</em> in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!).</p>
-<p>Most tutorials will be in quarto or jupyter notebook format and will have code-copy enabled!</p>
-<p>There is a ‘getting started’ tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!</p>
-<p>Check out the resources page for links to packages etc. that are interesting or might be helpful for omics analysis.</p>
-<p>As a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I’ll be including new-to-me methods as I learn them.</p>
+<p>This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.</p>
+<p>The references are grouped into broad categories under headings.</p>
+<section id="spatial-omics" class="level1">
+<h1>Spatial Omics</h1>
+<p><strong>Spatial Data</strong> <a href="https://spatialdata.scverse.org/en/stable/" class="uri">https://spatialdata.scverse.org/en/stable/</a> Mainly an object type to be used with different spatial omics data. It is still under development so the API may be subject to change. Uses anndata object to hold expression/fluorescence values so can be used with most scanpy-type analysis packages (scVI <a href="https://scvi-tools.org" class="uri">https://scvi-tools.org</a>, scanpy <a href="https://scanpy.readthedocs.io/en/stable/" class="uri">https://scanpy.readthedocs.io/en/stable/</a>, squidpy <a href="https://squidpy.readthedocs.io/en/stable/)" class="uri">https://squidpy.readthedocs.io/en/stable/)</a></p>
+<p><strong>SpaTopic</strong> <a href="https://xiyupeng.github.io/SpaTopic/" class="uri">https://xiyupeng.github.io/SpaTopic/</a> An R package for spatial topic modeling developed by Xiyu Peng. SpaTopic only requires cell type label and cell location, and can work across multiple samples. Works well with MIF data but could probably be used with other methods as well as long as cell type and location are known.</p>
+<details>
+<summary>
+Click for Citation
+</summary>
+Peng, X., Smithy, J.W., Yosofvand, M. et al.&nbsp;Scalable topic modelling decodes spatial tissue architecture for large-scale multiplexed imaging analysis. Nat Commun 16, 6619 (2025). https://doi.org/10.1038/s41467-025-61821-y
+</details>
+</section>
+<section id="jupyter" class="level1">
+<h1>Jupyter</h1>
+<p>Jupyter widgets w/ plotly <a href="https://quarto.org/docs/interactive/widgets/jupyter.html" class="uri">https://quarto.org/docs/interactive/widgets/jupyter.html</a></p>
 
 
 </section>

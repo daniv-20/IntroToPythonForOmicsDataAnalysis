@@ -19,5 +19,10 @@ The references are grouped into broad categories under headings.
 Peng, X., Smithy, J.W., Yosofvand, M. et al. Scalable topic modelling decodes spatial tissue architecture for large-scale multiplexed imaging analysis. Nat Commun 16, 6619 (2025). https://doi.org/10.1038/s41467-025-61821-y
 </details>
 
+## Segmentation
+
+[cellpose](https://www.cellpose.org). Supposedly better than stardist in some cases. Still investigating this. 
+
+
 # Jupyter
 Jupyter widgets w/ plotly <https://quarto.org/docs/interactive/widgets/jupyter.html>

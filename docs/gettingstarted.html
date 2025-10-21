@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-15">
+<meta name="author" content="Dani V">
+<meta name="dcterms.date" content="2025-10-21">
 
-<title>Reference Parking Lot – Intro to Python for Omics Data Analysis</title>
+<title>Getting Started with Python – Intro to Python for Omics Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,7 +107,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -155,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Reference Parking Lot</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Getting Started with Python</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,8 +198,8 @@ ul.task-list li input[type="checkbox"] {
       </button>
     </div>
   </nav>
-  <div id="quarto-announcement" data-announcement-id="7cd50bdee485c9e228a7834a8b21ddbd" class="alert alert-primary hidden"><div class="quarto-announcement-content">
-<p><strong>Notice</strong> This website is a work in progress!</p>
+  <div id="quarto-announcement" data-announcement-id="be913c3bee2d3e41b81352ba37bfd897" class="alert alert-primary hidden"><div class="quarto-announcement-content">
+<p><strong>Notice</strong> This website is a work in progress! Some tutorials may be incomplete or missing images.</p>
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
@@ -198,8 +233,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#spatial-omics" id="toc-spatial-omics" class="nav-link active" data-scroll-target="#spatial-omics">Spatial Omics</a></li>
-  <li><a href="#jupyter" id="toc-jupyter" class="nav-link" data-scroll-target="#jupyter">Jupyter</a></li>
+  <li><a href="#step-1-installing-python" id="toc-step-1-installing-python" class="nav-link active" data-scroll-target="#step-1-installing-python">Step 1: Installing Python</a></li>
+  <li><a href="#step-2-choosing-your-integrated-development-environment-ide" id="toc-step-2-choosing-your-integrated-development-environment-ide" class="nav-link" data-scroll-target="#step-2-choosing-your-integrated-development-environment-ide">Step 2: Choosing your Integrated Development Environment (IDE)</a>
+  <ul class="collapse">
+  <li><a href="#aside-setting-up-your-ide---quality-of-life-things" id="toc-aside-setting-up-your-ide---quality-of-life-things" class="nav-link" data-scroll-target="#aside-setting-up-your-ide---quality-of-life-things">Aside: Setting up your IDE - Quality of life things</a></li>
+  </ul></li>
+  <li><a href="#step-3-working-with-python" id="toc-step-3-working-with-python" class="nav-link" data-scroll-target="#step-3-working-with-python">Step 3: Working with Python</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-project-folder" id="toc-creating-a-project-folder" class="nav-link" data-scroll-target="#creating-a-project-folder">Creating a Project Folder</a></li>
+  <li><a href="#creating-a-python-script" id="toc-creating-a-python-script" class="nav-link" data-scroll-target="#creating-a-python-script">Creating a python script</a></li>
+  <li><a href="#running-python-scripts" id="toc-running-python-scripts" class="nav-link" data-scroll-target="#running-python-scripts">Running Python Scripts</a>
+  <ul class="collapse">
+  <li><a href="#from-command-lineterminal" id="toc-from-command-lineterminal" class="nav-link" data-scroll-target="#from-command-lineterminal">From command line/terminal</a></li>
+  <li><a href="#with-a-bash-script-.sh-file" id="toc-with-a-bash-script-.sh-file" class="nav-link" data-scroll-target="#with-a-bash-script-.sh-file">With a bash script (.sh file)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#congratulations" id="toc-congratulations" class="nav-link" data-scroll-target="#congratulations">Congratulations</a>
+  <ul class="collapse">
+  <li><a href="#step-4-optional-ssh-to-host-positron" id="toc-step-4-optional-ssh-to-host-positron" class="nav-link" data-scroll-target="#step-4-optional-ssh-to-host-positron">Step 4 (Optional): SSH to Host (Positron)</a>
+  <ul class="collapse">
+  <li><a href="#running-python-scripts-on-the-remote-host" id="toc-running-python-scripts-on-the-remote-host" class="nav-link" data-scroll-target="#running-python-scripts-on-the-remote-host">Running Python Scripts on the remote host</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -208,18 +263,24 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reference Parking Lot</h1>
+<h1 class="title">Getting Started with Python</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dani V </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-15</p>
+      <p class="date">2025-10-21</p>
     </div>
   </div>
   
@@ -231,24 +292,182 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.</p>
-<p>The references are grouped into broad categories under headings.</p>
-<section id="spatial-omics" class="level1">
-<h1>Spatial Omics</h1>
-<p><strong>Spatial Data</strong> <a href="https://spatialdata.scverse.org/en/stable/" class="uri">https://spatialdata.scverse.org/en/stable/</a> Mainly an object type to be used with different spatial omics data. It is still under development so the API may be subject to change. Uses anndata object to hold expression/fluorescence values so can be used with most scanpy-type analysis packages (scVI <a href="https://scvi-tools.org" class="uri">https://scvi-tools.org</a>, scanpy <a href="https://scanpy.readthedocs.io/en/stable/" class="uri">https://scanpy.readthedocs.io/en/stable/</a>, squidpy <a href="https://squidpy.readthedocs.io/en/stable/)" class="uri">https://squidpy.readthedocs.io/en/stable/)</a></p>
-<p><strong>SpaTopic</strong> <a href="https://xiyupeng.github.io/SpaTopic/" class="uri">https://xiyupeng.github.io/SpaTopic/</a> An R package for spatial topic modeling developed by Xiyu Peng. SpaTopic only requires cell type label and cell location, and can work across multiple samples. Works well with MIF data but could probably be used with other methods as well as long as cell type and location are known.</p>
+<p>This tutorial explains some ways to get started with using Python, including installation, setup, IDEs, and virtual environments (venv/conda, I prefer venv, many use conda).</p>
+<p>This is a bare-bones tutorial, but there are others out there that explain these things in more depth. <em>This tutorial assumes you have the ability to download and install files on your machine, which may not be true for some organization managed devices/compute clusters!</em></p>
+<section id="step-1-installing-python" class="level1">
+<h1>Step 1: Installing Python</h1>
+<p>Python can be installed from <a href="https://www.python.org/downloads/" class="uri">https://www.python.org/downloads/</a>. Please choose the download that best matches your device OS (MacOS, Windows, Unix, etc).</p>
+<p>The downloads website will default to the most recent version of Python, but you can scroll down to find other versions. Please note that you may run into package dependency issues when using some older tools or open-source tools that have not been updated for the most recent python version.</p>
+<p>As of writing this, my preference is to use Python 3.10 or Python 3.11. It is possible to have multiple python installations on the same machine and either <a href="https://docs.python.org/3/library/venv.html">venv</a> or <a href="https://www.anaconda.com/docs/getting-started/miniconda/main">conda</a> to manage which version of python you want to use for a given project.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>MAKE SURE YOUR PYTHON EXECUTABLE IS ADDED TO THE SYSTEM PATH
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I have made this mistake too many times. If your python executable is not in your system path, you can run into problems using python. This tutorial explains how to add your Python to the system path for various OS <a href="https://realpython.com/add-python-to-path/" class="uri">https://realpython.com/add-python-to-path/</a>.</p>
+</div>
+</div>
+<p>Python can also be installed using conda if you choose. I would recommend miniconda <a href="https://www.anaconda.com/docs/getting-started/miniconda/main" class="uri">https://www.anaconda.com/docs/getting-started/miniconda/main</a> if you decide to go the conda route as the full anaconda installation is rather large and clunky. The miniconda tutorial from the link above is pretty comprehensive so I will not rehash it here.</p>
+</section>
+<section id="step-2-choosing-your-integrated-development-environment-ide" class="level1">
+<h1>Step 2: Choosing your Integrated Development Environment (IDE)</h1>
+<p>Choosing an IDE is a personal preference. There are many free and paid IDEs out there, each with their own pros and cons.</p>
+<p>Because I use both R and Python in my work, I prefer to use Positron <a href="https://positron.posit.co/download.html" class="uri">https://positron.posit.co/download.html</a>, a relatively new IDE from Posit that combines aspects of VSCode <a href="https://code.visualstudio.com" class="uri">https://code.visualstudio.com</a> (including most VSCode extensions) and RStudio. Positron is free to download and works well on both Windows and MacOS machines in my experience. <strong>If you do not already have another IDE you prefer, I would recommend giving Positron a try! I will include positron screenshots where relevant in these tutorials.</strong></p>
+<p>Most of the tutorials here should be valid regardless of your choice of IDE, however I may reference certain extensions or tools that are more specific to Positron/VSCode since those are what I am familiar with.</p>
+<p><span style="color:#002569">Now is a good time to open your IDE if you haven’t yet!</span></p>
+<section id="aside-setting-up-your-ide---quality-of-life-things" class="level2">
+<h2 class="anchored" data-anchor-id="aside-setting-up-your-ide---quality-of-life-things">Aside: Setting up your IDE - Quality of life things</h2>
+<p>Many IDEs (including Positron, VSCode and RStudio) are very customizable, so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account or profile.</p>
+<p>Some things to customize include:<br>
+- Theme (ex: dark mode/light mode)<br>
+- Extensions (ex: csv viewer, pdf viewer, Quarto, Github)<br>
+- Editor Layout (ex: console, terminal, plot viewer, variables)</p>
+<p>As you spend more time using your IDE you can change your customizations to better suit your needs.</p>
+<p>For those using Positron/VS Code I would recommend the following extensions:<br>
+- Jupyter<br>
+- Github Pull Requests<br>
+- Quarto</p>
+<p>Jupyter notebooks and quarto documents both allow you to combine code chunks with normal text. (I also built this website with Quarto!!) Having a csv viewer in your IDE is helpful, but not a requirement.</p>
+<p>It is also possible to configure your IDE to play well with git/github and allow remote-ssh to a compute cluster (see <code>Step 4: SSH to Host</code>).</p>
+</section>
+</section>
+<section id="step-3-working-with-python" class="level1">
+<h1>Step 3: Working with Python</h1>
+<p>Depending on your IDE, you may have to install an extension to work with Python (I believe this is true of VSCode). Other than that, if you added Python to the system path correctly, you sould be ready to go!</p>
+<p>If you are working with Positron, you should see your Python version (or the word ‘Session’) at the top left of the window. If you click that box, you can change what version you’re using.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="session_tab.png" class="img-fluid figure-img"></p>
+<figcaption>Session Box</figcaption>
+</figure>
+</div>
+<section id="creating-a-project-folder" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-project-folder">Creating a Project Folder</h2>
+<p>Focusing on Positron/VSCode (the user interface looks almost identical for both of them), you would typically start a project by opening or creating a project folder.</p>
+<p>For now, create a folder called ‘BeginningPython’ and open it in your IDE.</p>
 <details>
 <summary>
-Click for Citation
+Creating/Opening a folder in Positron
 </summary>
-Peng, X., Smithy, J.W., Yosofvand, M. et al.&nbsp;Scalable topic modelling decodes spatial tissue architecture for large-scale multiplexed imaging analysis. Nat Commun 16, 6619 (2025). https://doi.org/10.1038/s41467-025-61821-y
+<h2 class="anchored">
+From initial startup screen
+</h2>
+<p>To create a new folder, click the ‘New Folder’ icon shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./CreateNewFolder.png" class="img-fluid figure-img"></p>
+<figcaption>New Folder Icon</figcaption>
+</figure>
+</div>
+<p>To open a folder in Positron, you click the ‘Open Folder’ icon shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./OpenFolder.png" class="img-fluid figure-img"></p>
+<figcaption>Open Folder Icon</figcaption>
+</figure>
+</div>
 </details>
 </section>
-<section id="jupyter" class="level1">
-<h1>Jupyter</h1>
-<p>Jupyter widgets w/ plotly <a href="https://quarto.org/docs/interactive/widgets/jupyter.html" class="uri">https://quarto.org/docs/interactive/widgets/jupyter.html</a></p>
+<section id="creating-a-python-script" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-python-script">Creating a python script</h2>
+<p>Python scripts use the extension <code>.py</code>. To create a Python script in your IDE, click on the <code>New File</code> icon and, in the new file’s name bar, type <code>first_python.py</code>.</p>
+<p>To open this new file, click on it.</p>
+<div style="color:#999999">
+<p><strong>Aside:</strong> Because the <code>.py</code> extension is what tells the computer that a file is supposed to be a python script, it is technically possible to create python scripts in a simple text editor by naming the file with the <code>.py</code> extension.</p>
+</div>
+<p>To get started, let’s write a simple print statement and do some basic math.</p>
+<p>In your python script, write the following.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world"</span>)</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="dv">7</span></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"x - y = </span><span class="sc">{</span>x<span class="op">-</span>y<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="1">The ‘f’ is not a typo! This is an f string, which lets us add results into a print statement. We’ll discuss f-strings later.</span>
+</dd>
+</dl>
+</section>
+<section id="running-python-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="running-python-scripts">Running Python Scripts</h2>
+<p>There are multiple ways to run your python script. If you are working in Positron, you can highlight the lines of code you want to run and press <code>ctrl + return</code> (true for Windows and MacOS).</p>
+<p>The method above is best for running a few lines at a time. To run the full file, click the ‘run’ button on your IDE. In Positron, it’s typically located at the top left (right below the python script tab).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="play_button.png" class="img-fluid figure-img"></p>
+<figcaption>Run Button</figcaption>
+</figure>
+</div>
+<p>After running the demo code, you get:</p>
+<div id="3a29a38d" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="dv">7</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"x - y = </span><span class="sc">{</span>x<span class="op">-</span>y<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello world
+x - y = 8</code></pre>
+</div>
+</div>
+<section id="from-command-lineterminal" class="level3">
+<h3 class="anchored" data-anchor-id="from-command-lineterminal">From command line/terminal</h3>
+<p>You can also run python scripts from the command line. If you are using Positron, click on the “TERMINAL” tab. In the terminal, you should see the name of your working directory (the folder your ‘first_python.py’ document is in.)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="terminal_tab.png" class="img-fluid figure-img"></p>
+<figcaption>Terminal Tab</figcaption>
+</figure>
+</div>
+<p>The ‘scripting language’ of the terminal is called ‘bash’ for Unix-like systems (MacOS, Linux) and typically ‘powershell’ for windows.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> first_python.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you are working on MAC, you might have to do <code>python3 first_python.py</code> instead.</p>
+</section>
+<section id="with-a-bash-script-.sh-file" class="level3">
+<h3 class="anchored" data-anchor-id="with-a-bash-script-.sh-file">With a bash script (.sh file)</h3>
+<p>Finally, you can run one or multiple python files using a bash script (.sh file). This is a bit more involved so it will be included in another tutorial <strong>link will be here when available</strong>.</p>
+</section>
+</section>
+</section>
+<section id="congratulations" class="level1">
+<h1>Congratulations</h1>
+<p>If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to do Things(tm) in Python (aka python data structures and object-oriented vs functional programming).</p>
+<section id="step-4-optional-ssh-to-host-positron" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-optional-ssh-to-host-positron">Step 4 (Optional): SSH to Host (Positron)</h2>
+<p>If you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!</p>
+<p>There are two ways to connect Positron to a remote host. The fast way is to click the little &gt;&lt; icon at the bottom left of the screen <strong>add image</strong>. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to <code>Connect to Host</code>, <code>Connect Current Window to Host</code> or <code>Update SSH Configuration</code> <strong>add image</strong>. Click <code>Connect Current Window to Host</code> and put the username you use to connect to your compute cluster <strong>add img</strong> and then hit enter and type your password.</p>
+<p>The first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster.</p>
+<p>The other option to connect via Remote-SSH is to click on the search bar <strong>add img</strong> and click <code>show and run commands</code>. <strong>add img</strong> or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on <code>Remote-SSH: Connect Current Window to Host</code> <strong>add img</strong>. There you put the username you use to connect to your compute cluster <strong>add img</strong> and then hit enter and type your password.</p>
+<section id="running-python-scripts-on-the-remote-host" class="level3">
+<h3 class="anchored" data-anchor-id="running-python-scripts-on-the-remote-host">Running Python Scripts on the remote host</h3>
+<p>Once you have connected to the remote host, you should be able to create and run python scripts there in the same manner as on your local machine (provided you have the necessary permissions).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>You can only see files on the host that are stored on a drive the host sees.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to run a file from your local machine on the host machine, you need to upload that file (and the necessary data etc.) to the host machine.</p>
+</div>
+</div>
+<p>You can download files/folders from the host machine to your machine by right-clicking (ctrl+click on mac) and then clicking download.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

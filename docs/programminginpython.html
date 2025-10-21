@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dani V">
-<meta name="dcterms.date" content="2025-10-15">
+<meta name="dcterms.date" content="2025-10-21">
 
-<title>About this Site – Intro to Python for Omics Data Analysis</title>
+<title>Programming in Python – Intro to Python for Omics Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -156,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About this Site</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Programming in Python</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,8 +163,8 @@ ul.task-list li input[type="checkbox"] {
       </button>
     </div>
   </nav>
-  <div id="quarto-announcement" data-announcement-id="7cd50bdee485c9e228a7834a8b21ddbd" class="alert alert-primary hidden"><div class="quarto-announcement-content">
-<p><strong>Notice</strong> This website is a work in progress!</p>
+  <div id="quarto-announcement" data-announcement-id="be913c3bee2d3e41b81352ba37bfd897" class="alert alert-primary hidden"><div class="quarto-announcement-content">
+<p><strong>Notice</strong> This website is a work in progress! Some tutorials may be incomplete or missing images.</p>
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
@@ -194,15 +193,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#programming-paradigms---object-oriented-vs-functional" id="toc-programming-paradigms---object-oriented-vs-functional" class="nav-link active" data-scroll-target="#programming-paradigms---object-oriented-vs-functional">Programming Paradigms - Object-Oriented vs Functional</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About this Site</h1>
+<h1 class="title">Programming in Python</h1>
 </div>
 
 
@@ -219,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-15</p>
+      <p class="date">2025-10-21</p>
     </div>
   </div>
   
@@ -231,11 +236,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python.</p>
-<p>I’m trying to make this as detailed as possible, so you should not have to know anything about programming to get started! I will link back to past tutorials and other resources during explanations of more complicated topics to keep things less wordy.</p>
-<p>Feel free to make use of the search function to find the information most relevant to you!</p>
+<p><em>This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use <a href="https://positron.posit.co/download.html">Positron</a>, so some information may be Positron-specific. No prior programming knowledge is necessary.</em></p>
+<p>If you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful.</p>
+<details>
+<summary>
+A primer on programming.
+</summary>
+<p>I think of code, in any language, as a set of instructions that tells a computer to do something. As long as the instructions are logically sound and written interpretably, the computer should be able to perform the steps as instructed.</p>
+<p>While programming is a bit more complicated than that in practice, this is still the underlying fundamental.</p>
+<p>In theory (and I’ve found mostly in practice), if you understand the logical steps (by logic I mean _) you want the computer to perform, in what order and under what cases, actually writing the code is mostly a matter of syntax (add a definition here).</p>
+<p>With the prevalence of LLMs/AI helpers, it’s become even easier to get functioning code from a series of logical statements.</p>
+</details>
+<section id="programming-paradigms---object-oriented-vs-functional" class="level2">
+<h2 class="anchored" data-anchor-id="programming-paradigms---object-oriented-vs-functional">Programming Paradigms - Object-Oriented vs Functional</h2>
+<p>The Python libraries (packages) used in Omics analysis tend to be very ‘object-oriented’, meaning that they harness the properties of ‘objects’ rather than ‘functions’.</p>
+<p>Here, <strong>objects</strong> are <strong>instances</strong> (individual items) of <strong>classes</strong> (blueprints) that contain <strong>attributes</strong> (data/information) and <strong>methods</strong> (instructions), while <strong>functions</strong> are a <strong>set of steps</strong> to be performed and are not limited to acting on/being associated with a certain object.</p>
+<p>Most programming languages lend themselves to either object-oriented or functional programming (or both) and programmers that specialize in these languages tend to prefer one paradigm or another.</p>
+<p>Most python programmers and library developers use object-oriented.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,144 @@
+/*-- scss:defaults --*/
+$links: #002569;
+$codebg: #f8f9fa;
+$tipbg: #c8e6fe;
+$border-color: #ccc;
+$text-color: #333;
+$font-family: 'Helvetica Neue', sans-serif;
+$padding: 10px;
+$border-radius: 5px;
+$hover: #0074e0;
+$subhead: #0074e0;
+
+/*-- scss:rules --*/
+body {
+  font-family: $font-family;
+  color: $text-color;
+}
+
+h1,
+h2,
+h3 {
+  color: $links;
+}
+
+h3 {
+  text-align: center;
+}
+
+h4,
+h5,
+h6 {
+  color: $subhead;
+}
+
+a {
+  color: $links;
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: $hover;
+  }
+}
+
+pre,
+.cell-output-display {
+  background-color: $codebg;
+  border: 1px solid $border-color;
+  padding: $padding;
+  border-radius: $border-radius;
+  font-family: monospace;
+  overflow-x: auto;
+}
+
+.sp {
+  height: 8px;
+}
+
+.niceblock {
+  background-color: $tipbg;
+  border: 1px solid $tipbg;
+  padding: $padding;
+  border-radius: $border-radius;
+  margin-bottom: 10px;
+}
+
+.link-block {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  padding: 0 20px;
+
+  img {
+    height: 50px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  p {
+    text-align: center;
+    margin: 0;
+
+    &:hover {
+      color: $hover;
+    }
+  }
+}
+
+.terminal {
+  background-color: #1e1e1e !important;
+  border: 1px solid $border-color;
+  color: #ffffff !important;
+  padding: 10px 5px 0 5px !important;
+  font-family: monospace;
+  border-radius: $border-radius;
+  overflow: auto;
+}
+
+details {
+  background-color: $tipbg;
+  border: 1px solid $tipbg;
+  padding: $padding;
+  border-radius: $border-radius;
+  margin-bottom: 10px;
+}
+
+summary {
+  font-weight: bold;
+  font-size: 16px;
+  color: #040404;
+  cursor: pointer;
+  padding: 5px 0;
+
+  &:hover {
+    color: $hover;
+  }
+}
+
+.ans {
+  details {
+    background-color: $codebg;
+    border: 1px solid $border-color;
+    padding: $padding;
+    border-radius: $border-radius;
+    margin-bottom: 10px;
+  }
+
+  summary {
+    font-weight: bold;
+    font-size: 16px;
+    color: #040404;
+    cursor: pointer;
+    padding: 5px 0;
+
+    &:hover {
+      color: $hover;
+    }
+  }
+}
+
+.span mark {
+  background-color: #40B4E5;
+}

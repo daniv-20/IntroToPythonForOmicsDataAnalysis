@@ -1,14 +1,13 @@
 project:
   type: website
   title: "Intro to Python for Omics Data Analysis"
-  execute-dir: project
   output-dir: ../docs
 
 
 website:
   title: "Intro to Python for Omics Data Analysis"
   announcement: 
-    content: "**Notice** This website is a work in progress!"
+    content: "**Notice** This website is a work in progress! Some tutorials may be incomplete or missing images."
     position: below-navbar
   navbar:
     left:
@@ -46,11 +45,8 @@ format:
   html:
     theme:
       - cosmo
-      - brand
     dark:
       - darkly
-      - brand
-    css: styles.css
     toc: true
     code-copy: true
   

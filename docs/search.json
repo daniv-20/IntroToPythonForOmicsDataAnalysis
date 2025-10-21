@@ -1,27 +1,90 @@
 [
   {
+    "objectID": "gettingstarted.html",
+    "href": "gettingstarted.html",
+    "title": "Getting Started with Python",
+    "section": "",
+    "text": "This tutorial explains some ways to get started with using Python, including installation, setup, IDEs, and virtual environments (venv/conda, I prefer venv, many use conda).\nThis is a bare-bones tutorial, but there are others out there that explain these things in more depth. This tutorial assumes you have the ability to download and install files on your machine, which may not be true for some organization managed devices/compute clusters!"
+  },
+  {
+    "objectID": "gettingstarted.html#aside-setting-up-your-ide---quality-of-life-things",
+    "href": "gettingstarted.html#aside-setting-up-your-ide---quality-of-life-things",
+    "title": "Getting Started with Python",
+    "section": "Aside: Setting up your IDE - Quality of life things",
+    "text": "Aside: Setting up your IDE - Quality of life things\nMany IDEs (including Positron, VSCode and RStudio) are very customizable, so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account or profile.\nSome things to customize include:\n- Theme (ex: dark mode/light mode)\n- Extensions (ex: csv viewer, pdf viewer, Quarto, Github)\n- Editor Layout (ex: console, terminal, plot viewer, variables)\nAs you spend more time using your IDE you can change your customizations to better suit your needs.\nFor those using Positron/VS Code I would recommend the following extensions:\n- Jupyter\n- Github Pull Requests\n- Quarto\nJupyter notebooks and quarto documents both allow you to combine code chunks with normal text. (I also built this website with Quarto!!) Having a csv viewer in your IDE is helpful, but not a requirement.\nIt is also possible to configure your IDE to play well with git/github and allow remote-ssh to a compute cluster (see Step 4: SSH to Host)."
+  },
+  {
+    "objectID": "gettingstarted.html#creating-a-project-folder",
+    "href": "gettingstarted.html#creating-a-project-folder",
+    "title": "Getting Started with Python",
+    "section": "Creating a Project Folder",
+    "text": "Creating a Project Folder\nFocusing on Positron/VSCode (the user interface looks almost identical for both of them), you would typically start a project by opening or creating a project folder.\nFor now, create a folder called ‘BeginningPython’ and open it in your IDE.\n\n\nCreating/Opening a folder in Positron\n\n\nFrom initial startup screen\n\nTo create a new folder, click the ‘New Folder’ icon shown below.\n\n\n\nNew Folder Icon\n\n\nTo open a folder in Positron, you click the ‘Open Folder’ icon shown below.\n\n\n\nOpen Folder Icon"
+  },
+  {
+    "objectID": "gettingstarted.html#creating-a-python-script",
+    "href": "gettingstarted.html#creating-a-python-script",
+    "title": "Getting Started with Python",
+    "section": "Creating a python script",
+    "text": "Creating a python script\nPython scripts use the extension .py. To create a Python script in your IDE, click on the New File icon and, in the new file’s name bar, type first_python.py.\nTo open this new file, click on it.\n\nAside: Because the .py extension is what tells the computer that a file is supposed to be a python script, it is technically possible to create python scripts in a simple text editor by naming the file with the .py extension.\n\nTo get started, let’s write a simple print statement and do some basic math.\nIn your python script, write the following.\nprint(\"hello world\")\n\nx = 1\ny = -7\n\n1print(f\"x - y = {x-y}\")\n\n1\n\nThe ‘f’ is not a typo! This is an f string, which lets us add results into a print statement. We’ll discuss f-strings later."
+  },
+  {
+    "objectID": "gettingstarted.html#running-python-scripts",
+    "href": "gettingstarted.html#running-python-scripts",
+    "title": "Getting Started with Python",
+    "section": "Running Python Scripts",
+    "text": "Running Python Scripts\nThere are multiple ways to run your python script. If you are working in Positron, you can highlight the lines of code you want to run and press ctrl + return (true for Windows and MacOS).\nThe method above is best for running a few lines at a time. To run the full file, click the ‘run’ button on your IDE. In Positron, it’s typically located at the top left (right below the python script tab).\n\n\n\nRun Button\n\n\nAfter running the demo code, you get:\n\nprint(\"hello world\")\n\nx = 1\ny = -7\n\nprint(f\"x - y = {x-y}\")\n\nhello world\nx - y = 8\n\n\n\nFrom command line/terminal\nYou can also run python scripts from the command line. If you are using Positron, click on the “TERMINAL” tab. In the terminal, you should see the name of your working directory (the folder your ‘first_python.py’ document is in.)\n\n\n\nTerminal Tab\n\n\nThe ‘scripting language’ of the terminal is called ‘bash’ for Unix-like systems (MacOS, Linux) and typically ‘powershell’ for windows.\n\npython first_python.py\nIf you are working on MAC, you might have to do python3 first_python.py instead.\n\n\nWith a bash script (.sh file)\nFinally, you can run one or multiple python files using a bash script (.sh file). This is a bit more involved so it will be included in another tutorial link will be here when available."
+  },
+  {
+    "objectID": "gettingstarted.html#step-4-optional-ssh-to-host-positron",
+    "href": "gettingstarted.html#step-4-optional-ssh-to-host-positron",
+    "title": "Getting Started with Python",
+    "section": "Step 4 (Optional): SSH to Host (Positron)",
+    "text": "Step 4 (Optional): SSH to Host (Positron)\nIf you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!\nThere are two ways to connect Positron to a remote host. The fast way is to click the little &gt;&lt; icon at the bottom left of the screen add image. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to Connect to Host, Connect Current Window to Host or Update SSH Configuration add image. Click Connect Current Window to Host and put the username you use to connect to your compute cluster add img and then hit enter and type your password.\nThe first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster.\nThe other option to connect via Remote-SSH is to click on the search bar add img and click show and run commands. add img or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on Remote-SSH: Connect Current Window to Host add img. There you put the username you use to connect to your compute cluster add img and then hit enter and type your password.\n\nRunning Python Scripts on the remote host\nOnce you have connected to the remote host, you should be able to create and run python scripts there in the same manner as on your local machine (provided you have the necessary permissions).\n\n\n\n\n\n\nWarningYou can only see files on the host that are stored on a drive the host sees.\n\n\n\nIf you want to run a file from your local machine on the host machine, you need to upload that file (and the necessary data etc.) to the host machine.\n\n\nYou can download files/folders from the host machine to your machine by right-clicking (ctrl+click on mac) and then clicking download."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About this Site",
     "section": "",
-    "text": "The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python."
+    "text": "The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python.\nI’m trying to make this as detailed as possible, so you should not have to know anything about programming to get started! I will link back to past tutorials and other resources during explanations of more complicated topics to keep things less wordy.\nFeel free to make use of the search function to find the information most relevant to you!\nDisclaimer: I am mostly self-taught and I can make mistakes. Please look into the methods yourself before using them in your research."
   },
   {
-    "objectID": "refdump.html",
-    "href": "refdump.html",
-    "title": "Reference Parking Lot",
+    "objectID": "programminginpython.html",
+    "href": "programminginpython.html",
+    "title": "Programming in Python",
     "section": "",
-    "text": "This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.\nThe references are grouped into broad categories under headings.\n\nSpatial Omics\nSpatial Data https://spatialdata.scverse.org/en/stable/ Mainly an object type to be used with different spatial omics data. It is still under development so the API may be subject to change. Uses anndata object to hold expression/fluorescence values so can be used with most scanpy-type analysis packages (scVI https://scvi-tools.org, scanpy https://scanpy.readthedocs.io/en/stable/, squidpy https://squidpy.readthedocs.io/en/stable/)\nSpaTopic https://xiyupeng.github.io/SpaTopic/ An R package for spatial topic modeling developed by Xiyu Peng. SpaTopic only requires cell type label and cell location, and can work across multiple samples. Works well with MIF data but could probably be used with other methods as well as long as cell type and location are known.\n\n\nClick for Citation\n\nPeng, X., Smithy, J.W., Yosofvand, M. et al. Scalable topic modelling decodes spatial tissue architecture for large-scale multiplexed imaging analysis. Nat Commun 16, 6619 (2025). https://doi.org/10.1038/s41467-025-61821-y\n\n\n\nJupyter\nJupyter widgets w/ plotly https://quarto.org/docs/interactive/widgets/jupyter.html"
+    "text": "This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use Positron, so some information may be Positron-specific. No prior programming knowledge is necessary.\nIf you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful."
+  },
+  {
+    "objectID": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
+    "href": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
+    "title": "Programming in Python",
+    "section": "Programming Paradigms - Object-Oriented vs Functional",
+    "text": "Programming Paradigms - Object-Oriented vs Functional\nThe Python libraries (packages) used in Omics analysis tend to be very ‘object-oriented’, meaning that they harness the properties of ‘objects’ rather than ‘functions’.\nHere, objects are instances (individual items) of classes (blueprints) that contain attributes (data/information) and methods (instructions), while functions are a set of steps to be performed and are not limited to acting on/being associated with a certain object.\nMost programming languages lend themselves to either object-oriented or functional programming (or both) and programmers that specialize in these languages tend to prefer one paradigm or another.\nMost python programmers and library developers use object-oriented."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "A Resource Guide on Python for Omics Analysis",
     "section": "",
-    "text": "About this Site\nThe purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!).\nMost tutorials will be in quarto or jupyter notebook format and will have code-copy enabled!\nThere is a ‘getting started’ tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!\nCheck out the resources page for links to packages etc. that are interesting or might be helpful for omics analysis.\nAs a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I’ll be including new-to-me methods as I learn them.",
+    "text": "About this Site\nThe purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!).\nMost tutorials will be in quarto or jupyter notebook format and will have code-copy enabled!\nThere is a ‘getting started’ tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!\nCheck out the reference parking lot for links to packages etc. that are interesting or might be helpful for omics analysis.\nAs a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I’ll be including new-to-me methods as I learn them.",
     "crumbs": [
       "Home",
       "A Resource Guide on Python for Omics Analysis"
     ]
+  },
+  {
+    "objectID": "refdump.html",
+    "href": "refdump.html",
+    "title": "Reference Parking Lot",
+    "section": "",
+    "text": "This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.\nThe references are grouped into broad categories under headings."
+  },
+  {
+    "objectID": "refdump.html#segmentation",
+    "href": "refdump.html#segmentation",
+    "title": "Reference Parking Lot",
+    "section": "Segmentation",
+    "text": "Segmentation\ncellpose. Supposedly better than stardist in some cases. Still investigating this."
   }
 ]

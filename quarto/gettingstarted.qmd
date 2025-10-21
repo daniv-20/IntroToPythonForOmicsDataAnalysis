@@ -13,7 +13,7 @@ Python can be installed from <https://www.python.org/downloads/>. Please choose 
 
 The downloads website will default to the most recent version of Python, but you can scroll down to find other versions. Please note that you may run into package dependency issues when using some older tools or open-source tools that have not been updated for the most recent python version. 
 
-As of writing this, my preference is to use Python 3.10 or Python 3.11. It is possible to have multiple python installations on the same machine and either venv<https://docs.python.org/3/library/venv.html> or conda<https://www.anaconda.com/docs/getting-started/miniconda/main> to manage which version of python you want to use for a given project. 
+As of writing this, my preference is to use Python 3.10 or Python 3.11. It is possible to have multiple python installations on the same machine and either [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main) to manage which version of python you want to use for a given project. 
 
 <div class="callout-warning"> 
 ## MAKE SURE YOUR PYTHON EXECUTABLE IS ADDED TO THE SYSTEM PATH
@@ -34,29 +34,32 @@ Most of the tutorials here should be valid regardless of your choice of IDE, how
 
 ## Aside: Setting up your IDE - Quality of life things
 
-Many IDEs (including Positron, VSCode and R) are very customizable, so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account. 
+Many IDEs (including Positron, VSCode and RStudio) are very customizable, so I encourage you to take some time to explore your IDE of choice and set it up in a way that feels comfortable to use. Some IDEs also let you transfer customizations between machines via setting up an account or profile. 
 
-Some things to customize include: 
-    - Theme (ex: dark mode/light mode)
-    - Extensions (ex: csv viewer, pdf viewer, quarto, Github)
-    - Editor Layout (ex: console, terminal, plot viewer, variables)
+Some things to customize include:   
+    - Theme (ex: dark mode/light mode)  
+    - Extensions (ex: csv viewer, pdf viewer, Quarto, Github)  
+    - Editor Layout (ex: console, terminal, plot viewer, variables)  
 
 As you spend more time using your IDE you can change your customizations to better suit your needs. 
 
-For those using Positron/VS Code I would recommend the following extensions
-    - Jupyter
-    - Github Pull Requests
-    - Quarto
+For those using Positron/VS Code I would recommend the following extensions:  
+    - Jupyter  
+    - Github Pull Requests  
+    - Quarto  
 
 Jupyter notebooks and quarto documents both allow you to combine code chunks with normal text. (I also built this website with Quarto!!) Having a csv viewer in your IDE is helpful, but not a requirement. 
 
-It is also possible to configure your IDE to play well with git/github and allow remote-ssh to a compute cluster (stay tuned!!).
+It is also possible to configure your IDE to play well with git/github and allow remote-ssh to a compute cluster (see `Step 4: SSH to Host`).
 
 # Step 3: Working with Python
 
-Depending on your IDE, you may have to install an extension to work with Python. Other than that, if you added Python to the system path correctly, you sould be ready to go! 
+Depending on your IDE, you may have to install an extension to work with Python (I believe this is true of VSCode). Other than that, if you added Python to the system path correctly, you sould be ready to go! 
 
 If you are working with Positron, you should see your Python version (or the word 'Session') at the top left of the window. If you click that box, you can change what version you're using.
+
+![Session Box](session_tab.png)
+
 
 ## Creating a Project Folder
 
@@ -66,6 +69,9 @@ For now, create a folder called 'BeginningPython' and open it in your IDE.
 
 <details>
 <summary> Creating/Opening a folder in Positron </summary>
+
+<h2> From initial startup screen </h2>
+
 To create a new folder, click the 'New Folder' icon shown below.
 
 ![New Folder Icon](./CreateNewFolder.png)
@@ -107,7 +113,7 @@ There are multiple ways to run your python script. If you are working in Positro
 
 The method above is best for running a few lines at a time. To run the full file, click the 'run' button on your IDE. In Positron, it's typically located at the top left (right below the python script tab). 
 
-** insert screenshot **
+![Run Button](play_button.png)
 
 After running the demo code, you get: 
 ```{python}
@@ -122,19 +128,23 @@ print(f"x - y = {x-y}")
 
 ### From command line/terminal
 
-You can also run python scripts from the command line. If you are using Positron, click on the "TERMINAL" tab **add img**. In the terminal, you should see the name of your working directory (the folder your 'first_python.py' document is in.) **show another image**
+You can also run python scripts from the command line. If you are using Positron, click on the "TERMINAL" tab. In the terminal, you should see the name of your working directory (the folder your 'first_python.py' document is in.) 
 
-The 'scripting language' of the terminal is called 'bash' **make sure this is correct**. If you are working on MAC, you might have to do `python3 first_python.py` instead.
+![Terminal Tab](terminal_tab.png)
+
+The 'scripting language' of the terminal is called 'bash' for Unix-like systems (MacOS, Linux) and typically 'powershell' for windows.   
 
 ```{.bash}
 
 python first_python.py
 
 ```
+If you are working on MAC, you might have to do `python3 first_python.py` instead.
+
 
 ### With a bash script (.sh file)
 
-Finally, you can run one or multiple python files using a bash script (.sh file). This is a bit more involved so it will be included in another tutorial **link here when available**.
+Finally, you can run one or multiple python files using a bash script (.sh file). This is a bit more involved so it will be included in another tutorial **link will be here when available**.
 
 # Congratulations
 

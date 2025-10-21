@@ -11,7 +11,7 @@ Most tutorials will be in quarto or jupyter notebook format and will have code-c
 
 There is a 'getting started' tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!
 
-Check out the resources page for links to packages etc. that are interesting or might be helpful for omics analysis. 
+Check out the [reference parking lot](./refdump.html) for links to packages etc. that are interesting or might be helpful for omics analysis. 
 
 As a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I'll be including new-to-me methods as I learn them. 
 

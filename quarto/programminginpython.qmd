@@ -1,0 +1,31 @@
+---
+title: "Programming in Python"
+author: "Dani V"
+---
+
+*This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use [Positron](https://positron.posit.co/download.html), so some information may be Positron-specific. No prior programming knowledge is necessary.*
+
+If you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful. 
+
+<details>
+<summary>A primer on programming.</summary>
+I think of code, in any language, as a set of instructions that tells a computer to do something. As long as the instructions are logically sound and written interpretably, the computer should be able to perform the steps as instructed. 
+
+While programming is a bit more complicated than that in practice, this is still the underlying fundamental. 
+
+In theory (and I've found mostly in practice), if you understand the logical steps (by logic I mean _) you want the computer to perform, in what order and under what cases, actually writing the code is mostly a matter of syntax (add a definition here). 
+
+With the prevalence of LLMs/AI helpers, it's become even easier to get functioning code from a series of logical statements. 
+
+</details>
+
+## Programming Paradigms - Object-Oriented vs Functional
+
+The Python libraries (packages) used in Omics analysis tend to be very 'object-oriented', meaning that they harness the properties of 'objects' rather than 'functions'. 
+
+Here, **objects** are **instances** (individual items) of **classes** (blueprints) that contain **attributes** (data/information) and **methods** (instructions), while **functions** are a **set of steps** to be performed and are not limited to acting on/being associated with a certain object. 
+
+Most programming languages lend themselves to either object-oriented or functional programming (or both) and programmers that specialize in these languages tend to prefer one paradigm or another. 
+
+Most python programmers and library developers use object-oriented. 
+

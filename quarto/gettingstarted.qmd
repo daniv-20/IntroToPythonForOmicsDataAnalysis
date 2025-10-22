@@ -154,11 +154,11 @@ If you followed the tutorial up to this point, you can now run a python script o
 
 If you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!
 
-There are two ways to connect Positron to a remote host. The fast way is to click the little >< icon at the bottom left of the screen **add image**. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to `Connect to Host`, `Connect Current Window to Host` or `Update SSH Configuration` **add image**. Click `Connect Current Window to Host` and put the username you use to connect to your compute cluster **add img** and then hit enter and type your password. 
+There are two ways to connect Positron to a remote host. The fast way is to click the little >< icon at the bottom left of the screen ![Host Button](host_button.png). Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to `Connect to Host`, `Connect Current Window to Host` or `Update SSH Configuration` ![Connect to Host](ConnectToHost.png). Click `Connect Current Window to Host` and put the username you use to connect to your compute cluster and then hit enter and type your password. 
 
 The first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster. 
 
-The other option to connect via Remote-SSH is to click on the search bar **add img** and click `show and run commands`. **add img** or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on `Remote-SSH: Connect Current Window to Host` **add img**. There you put the username you use to connect to your compute cluster **add img** and then hit enter and type your password. 
+The other option to connect via Remote-SSH is to click on the search bar **add img** and click `show and run commands`. **add img** or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on `Remote-SSH: Connect Current Window to Host` **add img**. There you put the username you use to connect to your compute cluster and then hit enter and type your password. 
 
 ### Running Python Scripts on the remote host
 

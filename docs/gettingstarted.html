@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dani V">
-<meta name="dcterms.date" content="2025-10-21">
+<meta name="dcterms.date" content="2025-10-22">
 
 <title>Getting Started with Python – Intro to Python for Omics Data Analysis</title>
 <style>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-21</p>
+      <p class="date">2025-10-22</p>
     </div>
   </div>
   
@@ -406,7 +406,7 @@ From initial startup screen
 </figure>
 </div>
 <p>After running the demo code, you get:</p>
-<div id="3a29a38d" class="cell" data-execution_count="1">
+<div id="911ae27f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
@@ -444,9 +444,9 @@ x - y = 8</code></pre>
 <section id="step-4-optional-ssh-to-host-positron" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-optional-ssh-to-host-positron">Step 4 (Optional): SSH to Host (Positron)</h2>
 <p>If you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!</p>
-<p>There are two ways to connect Positron to a remote host. The fast way is to click the little &gt;&lt; icon at the bottom left of the screen <strong>add image</strong>. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to <code>Connect to Host</code>, <code>Connect Current Window to Host</code> or <code>Update SSH Configuration</code> <strong>add image</strong>. Click <code>Connect Current Window to Host</code> and put the username you use to connect to your compute cluster <strong>add img</strong> and then hit enter and type your password.</p>
+<p>There are two ways to connect Positron to a remote host. The fast way is to click the little &gt;&lt; icon at the bottom left of the screen <img src="host_button.png" class="img-fluid" alt="Host Button">. Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to <code>Connect to Host</code>, <code>Connect Current Window to Host</code> or <code>Update SSH Configuration</code> <img src="ConnectToHost.png" class="img-fluid" alt="Connect to Host">. Click <code>Connect Current Window to Host</code> and put the username you use to connect to your compute cluster and then hit enter and type your password.</p>
 <p>The first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster.</p>
-<p>The other option to connect via Remote-SSH is to click on the search bar <strong>add img</strong> and click <code>show and run commands</code>. <strong>add img</strong> or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on <code>Remote-SSH: Connect Current Window to Host</code> <strong>add img</strong>. There you put the username you use to connect to your compute cluster <strong>add img</strong> and then hit enter and type your password.</p>
+<p>The other option to connect via Remote-SSH is to click on the search bar <strong>add img</strong> and click <code>show and run commands</code>. <strong>add img</strong> or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on <code>Remote-SSH: Connect Current Window to Host</code> <strong>add img</strong>. There you put the username you use to connect to your compute cluster and then hit enter and type your password.</p>
 <section id="running-python-scripts-on-the-remote-host" class="level3">
 <h3 class="anchored" data-anchor-id="running-python-scripts-on-the-remote-host">Running Python Scripts on the remote host</h3>
 <p>Once you have connected to the remote host, you should be able to create and run python scripts there in the same manner as on your local machine (provided you have the necessary permissions).</p>

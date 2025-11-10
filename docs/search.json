@@ -1,5 +1,65 @@
 [
   {
+    "objectID": "cellpose_segmentation.html",
+    "href": "cellpose_segmentation.html",
+    "title": "Cell Segmentation of MIF and H&E images with Cellpose in Python - WIP",
+    "section": "",
+    "text": "I need to figure out how to do segmentation with cellpose so I’m turning it into a tutorial. Therefore, this tutorial will be most applicable to people with similar systems (macOS, Apple M4 gpu or similar). All data here are publically available.\nFirst, make sure all necessary packages are installed (see ‘programming in python’ tutorial) as per cellpose instructions (link). Switch to your cellpose virtual environment. (For me it’s ~/venvs/cellpose_mac).\nFirst, we need to check the GPU and load the model. The model needs to download and that can take some time.\n```{python}\nimport numpy as np\nfrom cellpose import models, core, io, plot\nfrom pathlib import Path\nfrom tqdm import trange\nimport matplotlib.pyplot as plt\n\nio.logger_setup() # run this to get printing of progress\n\n#Check if colab notebook instance has GPU access\nif core.use_gpu()==False:\n  raise ImportError(\"No GPU access, change your runtime\")\n\nmodel = models.CellposeModel(gpu=True)\n```\n\n2025-10-29 15:03:17,147 [INFO] WRITING LOG OUTPUT TO /Users/dvaithilingam/.cellpose/run.log\n2025-10-29 15:03:17,148 [INFO] \ncellpose version:   4.0.7 \nplatform:           darwin \npython version:     3.11.13 \ntorch version:      2.9.0\n2025-10-29 15:03:17,184 [INFO] ** TORCH MPS version installed and working. **\n2025-10-29 15:03:17,185 [INFO] ** TORCH MPS version installed and working. **\n2025-10-29 15:03:17,185 [INFO] &gt;&gt;&gt;&gt; using GPU (MPS)\n2025-10-29 15:03:17,824 [INFO] &gt;&gt;&gt;&gt; loading model /Users/dvaithilingam/.cellpose/models/cpsam"
+  },
+  {
+    "objectID": "cellpose_segmentation.html#run-cellpose-sam",
+    "href": "cellpose_segmentation.html#run-cellpose-sam",
+    "title": "Cell Segmentation of MIF and H&E images with Cellpose in Python - WIP",
+    "section": "Run Cellpose-SAM",
+    "text": "Run Cellpose-SAM\nAfter our images are downloaded, we can perform the segmentation using model.eval() and plot the results.\n\n```{python}\nmasks_pred, flows, styles = model.eval(imgs, niter=1000) \n```\n\n2025-10-29 15:03:30,869 [INFO] 0%|          | 0/24 [00:00&lt;?, ?it/s]\n2025-10-29 15:04:09,198 [INFO] 42%|####1     | 10/24 [00:38&lt;00:53,  3.83s/it]\n2025-10-29 15:04:28,931 [INFO] 42%|####1     | 10/24 [00:58&lt;00:53,  3.83s/it]\n2025-10-29 15:04:44,716 [INFO] 58%|#####8    | 14/24 [01:13&lt;00:56,  5.67s/it]\n2025-10-29 15:04:58,943 [INFO] 58%|#####8    | 14/24 [01:28&lt;00:56,  5.67s/it]\n2025-10-29 15:06:25,969 [INFO] 79%|#######9  | 19/24 [02:55&lt;00:57, 11.41s/it]\n2025-10-29 15:06:38,990 [INFO] 79%|#######9  | 19/24 [03:08&lt;00:57, 11.41s/it]\n2025-10-29 15:07:03,187 [INFO] 96%|#########5| 23/24 [03:32&lt;00:10, 10.76s/it]\n2025-10-29 15:07:08,979 [INFO] 100%|##########| 24/24 [03:38&lt;00:00,  9.09s/it]\n\n\n\n```{python}\nfrom cellpose import transforms, plot\n\ntitles = [\n        \"Cellpose\", \"Nuclei\", \"Tissuenet\", \"Livecell\", \"YeaZ\",\n         \"Omnipose\\nphase-contrast\", \"Omnipose\\nfluorescent\",\n        \"DeepBacs\"\n    ]\n\nplt.figure(figsize=(12,6))\nly = 400\nfor iex in range(len(imgs)):\n    img = imgs[iex].squeeze().copy()\n    img = np.clip(transforms.normalize_img(img, axis=0), 0, 1) # normalize images across channel axis\n    ax = plt.subplot(3, 8, (iex%3)*8 + (iex//3) +1)\n    if img[1].sum()==0:\n        img = img[0]\n        ax.imshow(img, cmap=\"gray\")\n    else:\n        # make RGB from 2 channel image\n        img = np.concatenate((np.zeros_like(img)[:1], img), axis=0).transpose(1,2,0)\n        ax.imshow(img)\n    ax.set_ylim([0, min(400, img.shape[0])])\n    ax.set_xlim([0, min(400, img.shape[1])])\n\n\n    # GROUND-TRUTH = PURPLE\n    # PREDICTED = YELLOW\n    outlines_gt = utils.outlines_list(masks_true[iex])\n    outlines_pred = utils.outlines_list(masks_pred[iex])\n    for o in outlines_gt:\n        plt.plot(o[:,0], o[:,1], color=[0.7,0.4,1], lw=0.5)\n    for o in outlines_pred:\n        plt.plot(o[:,0], o[:,1], color=[1,1,0.3], lw=0.75, ls=\"--\")\n    plt.axis('off')\n\n    if iex%3 == 0:\n        ax.set_title(titles[iex//3])\n\nplt.tight_layout()\nplt.show()\n```"
+  },
+  {
+    "objectID": "refdump.html",
+    "href": "refdump.html",
+    "title": "Reference Parking Lot",
+    "section": "",
+    "text": "This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.\nThe references are grouped into broad categories under headings."
+  },
+  {
+    "objectID": "refdump.html#segmentation",
+    "href": "refdump.html#segmentation",
+    "title": "Reference Parking Lot",
+    "section": "Segmentation",
+    "text": "Segmentation\ncellpose. Supposedly better than stardist in some cases. Still investigating this."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Resource Guide on Python for Omics Analysis",
+    "section": "",
+    "text": "About this Site\nThe purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!).\nMost tutorials will be in quarto or jupyter notebook format and will have code-copy enabled!\nThere is a ‘getting started’ tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!\nCheck out the reference parking lot for links to packages etc. that are interesting or might be helpful for omics analysis.\nAs a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I’ll be including new-to-me methods as I learn them.",
+    "crumbs": [
+      "Home",
+      "A Resource Guide on Python for Omics Analysis"
+    ]
+  },
+  {
+    "objectID": "programminginpython.html",
+    "href": "programminginpython.html",
+    "title": "Programming in Python",
+    "section": "",
+    "text": "This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use Positron, so some information may be Positron-specific. No prior programming knowledge is necessary.\nIf you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful."
+  },
+  {
+    "objectID": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
+    "href": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
+    "title": "Programming in Python",
+    "section": "Programming Paradigms - Object-Oriented vs Functional",
+    "text": "Programming Paradigms - Object-Oriented vs Functional\nThe Python libraries (packages) used in Omics analysis tend to be very ‘object-oriented’, meaning that they harness the properties of ‘objects’ rather than ‘functions’.\nHere, objects are instances (individual items) of classes (blueprints) that contain attributes (data/information) and methods (instructions), while functions are a set of steps to be performed and are not limited to acting on/being associated with a certain object.\nMost programming languages lend themselves to either object-oriented or functional programming (or both) and programmers that specialize in these languages tend to prefer one paradigm or another.\nMost python programmers and library developers use object-oriented."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this Site",
+    "section": "",
+    "text": "The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python.\nI’m trying to make this as detailed as possible, so you should not have to know anything about programming to get started! I will link back to past tutorials and other resources during explanations of more complicated topics to keep things less wordy.\nFeel free to make use of the search function to find the information most relevant to you!\nDisclaimer: I am mostly self-taught and I can make mistakes. Please look into the methods yourself before using them in your research."
+  },
+  {
     "objectID": "gettingstarted.html",
     "href": "gettingstarted.html",
     "title": "Getting Started with Python",
@@ -40,52 +100,6 @@
     "title": "Getting Started with Python",
     "section": "Step 4 (Optional): SSH to Host (Positron)",
     "text": "Step 4 (Optional): SSH to Host (Positron)\nIf you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!\nThere are two ways to connect Positron to a remote host. The fast way is to click the little &gt;&lt; icon at the bottom left of the screen . Mine is pink, yours may be another color depending on your theme. This will take you directly to the options to Connect to Host, Connect Current Window to Host or Update SSH Configuration . Click Connect Current Window to Host and put the username you use to connect to your compute cluster and then hit enter and type your password.\nThe first time you connect to the host, it will take some time as positron needs to be installed on the host. After that, the connection will be much faster.\nThe other option to connect via Remote-SSH is to click on the search bar add img and click show and run commands. add img or press ctrl+shift+P (cmd+shift+P on mac). This opens the commands panel in which you can type SSH and click on Remote-SSH: Connect Current Window to Host add img. There you put the username you use to connect to your compute cluster and then hit enter and type your password.\n\nRunning Python Scripts on the remote host\nOnce you have connected to the remote host, you should be able to create and run python scripts there in the same manner as on your local machine (provided you have the necessary permissions).\n\n\n\n\n\n\nWarningYou can only see files on the host that are stored on a drive the host sees.\n\n\n\nIf you want to run a file from your local machine on the host machine, you need to upload that file (and the necessary data etc.) to the host machine.\n\n\nYou can download files/folders from the host machine to your machine by right-clicking (ctrl+click on mac) and then clicking download."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About this Site",
-    "section": "",
-    "text": "The purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis and interfacing with things like QuPath in python.\nI’m trying to make this as detailed as possible, so you should not have to know anything about programming to get started! I will link back to past tutorials and other resources during explanations of more complicated topics to keep things less wordy.\nFeel free to make use of the search function to find the information most relevant to you!\nDisclaimer: I am mostly self-taught and I can make mistakes. Please look into the methods yourself before using them in your research."
-  },
-  {
-    "objectID": "programminginpython.html",
-    "href": "programminginpython.html",
-    "title": "Programming in Python",
-    "section": "",
-    "text": "This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use Positron, so some information may be Positron-specific. No prior programming knowledge is necessary.\nIf you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful."
-  },
-  {
-    "objectID": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
-    "href": "programminginpython.html#programming-paradigms---object-oriented-vs-functional",
-    "title": "Programming in Python",
-    "section": "Programming Paradigms - Object-Oriented vs Functional",
-    "text": "Programming Paradigms - Object-Oriented vs Functional\nThe Python libraries (packages) used in Omics analysis tend to be very ‘object-oriented’, meaning that they harness the properties of ‘objects’ rather than ‘functions’.\nHere, objects are instances (individual items) of classes (blueprints) that contain attributes (data/information) and methods (instructions), while functions are a set of steps to be performed and are not limited to acting on/being associated with a certain object.\nMost programming languages lend themselves to either object-oriented or functional programming (or both) and programmers that specialize in these languages tend to prefer one paradigm or another.\nMost python programmers and library developers use object-oriented."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "A Resource Guide on Python for Omics Analysis",
-    "section": "",
-    "text": "About this Site\nThe purpose of this website is to serve as a resource guide and set of notes/tutorials for ‘omics analysis’ in Python. This includes working with packages/programs that are geared towards omics analysis (eg scanpy) and interfacing with things like QuPath in python (woo geojson!!).\nMost tutorials will be in quarto or jupyter notebook format and will have code-copy enabled!\nThere is a ‘getting started’ tutorial for anyone who has never used Python before and I will include links to other tutorials/resources within all of my tutorials so please do not be afraid to jump right in!\nCheck out the reference parking lot for links to packages etc. that are interesting or might be helpful for omics analysis.\nAs a general disclaimer: I am not promising that the way I do things is the best (or most up-to-date) way! I am mostly self-taught in terms of programming and I’ll be including new-to-me methods as I learn them.",
-    "crumbs": [
-      "Home",
-      "A Resource Guide on Python for Omics Analysis"
-    ]
-  },
-  {
-    "objectID": "refdump.html",
-    "href": "refdump.html",
-    "title": "Reference Parking Lot",
-    "section": "",
-    "text": "This is a searchable dump of references I’ve found useful. I will try to add reference descriptions/tags when I can, but please don’t expect much organization here.\nThe references are grouped into broad categories under headings."
-  },
-  {
-    "objectID": "refdump.html#segmentation",
-    "href": "refdump.html#segmentation",
-    "title": "Reference Parking Lot",
-    "section": "Segmentation",
-    "text": "Segmentation\ncellpose. Supposedly better than stardist in some cases. Still investigating this."
   },
   {
     "objectID": "WorkingWithTiffs.html",

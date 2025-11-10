@@ -148,7 +148,7 @@ Finally, you can run one or multiple python files using a bash script (.sh file)
 
 # Congratulations
 
-If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to do Things(tm) in Python (aka python data structures and object-oriented vs functional programming). 
+If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to Do Things in Python (aka python data structures and object-oriented vs functional programming). 
 
 ## Step 4 (Optional): SSH to Host (Positron)
 

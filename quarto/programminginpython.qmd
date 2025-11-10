@@ -5,6 +5,11 @@ author: "Dani V"
 
 *This tutorial assumes you have Python installed on your computer and an IDE you are comforable with using. I use [Positron](https://positron.posit.co/download.html), so some information may be Positron-specific. No prior programming knowledge is necessary.*
 
+This tutorial will cover the following topics: 
+1. Basic Programming Concepts
+2. Python Data Structures
+3. Packages and Virtual Environments
+
 If you have no prior knowledge in programming, please click the drop-down below for a brief explanation of how programming works and some tips that I find useful. 
 
 <details>

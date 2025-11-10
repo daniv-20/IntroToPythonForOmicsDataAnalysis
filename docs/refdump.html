@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-22">
+<meta name="dcterms.date" content="2025-10-29">
 
 <title>Reference Parking Lot – Intro to Python for Omics Data Analysis</title>
 <style>
@@ -120,7 +120,14 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Advanced</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-advanced">    
-        <li class="dropdown-header">geojson_annot.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./geojson_annot.html">
+ <span class="dropdown-text">Importing Annotations from Qupath with Python - WIP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cellpose_segmentation.html">
+ <span class="dropdown-text">Cell Segmentation of MIF and H&amp;E images with Cellpose in Python - WIP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -202,6 +209,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#segmentation" id="toc-segmentation" class="nav-link" data-scroll-target="#segmentation">Segmentation</a></li>
   </ul></li>
   <li><a href="#jupyter" id="toc-jupyter" class="nav-link" data-scroll-target="#jupyter">Jupyter</a></li>
+  <li><a href="#positron-tips" id="toc-positron-tips" class="nav-link" data-scroll-target="#positron-tips">Positron Tips</a></li>
   </ul>
 </nav>
     </div>
@@ -221,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-22</p>
+      <p class="date">2025-10-29</p>
     </div>
   </div>
   
@@ -253,6 +261,12 @@ Peng, X., Smithy, J.W., Yosofvand, M. et al.&nbsp;Scalable topic modelling decod
 <section id="jupyter" class="level1">
 <h1>Jupyter</h1>
 <p>Jupyter widgets w/ plotly <a href="https://quarto.org/docs/interactive/widgets/jupyter.html" class="uri">https://quarto.org/docs/interactive/widgets/jupyter.html</a></p>
+</section>
+<section id="positron-tips" class="level1">
+<h1>Positron Tips</h1>
+<ul>
+<li>If positron isn’t finding your venv, go to <code>Show and Run Commands</code> -&gt; <code>Python: Select Interpreter</code> -&gt; <code>Enter Interpreter Path</code> -&gt; <code>Find</code> to browse your file system for an interpreter. Then find your venv folder, click the bin folder and find the Python executable you want to use as your interpreter.</li>
+</ul>
 
 
 </section>

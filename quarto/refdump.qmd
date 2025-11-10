@@ -26,3 +26,7 @@ Peng, X., Smithy, J.W., Yosofvand, M. et al. Scalable topic modelling decodes sp
 
 # Jupyter
 Jupyter widgets w/ plotly <https://quarto.org/docs/interactive/widgets/jupyter.html>
+
+# Positron Tips
+
+- If positron isn't finding your venv, go to `Show and Run Commands` -> `Python: Select Interpreter` -> `Enter Interpreter Path` -> `Find` to browse your file system for an interpreter. Then find your venv folder, click the bin folder and find the Python executable you want to use as your interpreter. 

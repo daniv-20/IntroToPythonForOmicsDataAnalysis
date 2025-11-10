@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dani V">
-<meta name="dcterms.date" content="2025-10-22">
+<meta name="dcterms.date" content="2025-10-29">
 
 <title>Getting Started with Python – Intro to Python for Omics Data Analysis</title>
 <style>
@@ -156,7 +156,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Advanced</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-advanced">    
-        <li class="dropdown-header">geojson_annot.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./geojson_annot.html">
+ <span class="dropdown-text">Importing Annotations from Qupath with Python - WIP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cellpose_segmentation.html">
+ <span class="dropdown-text">Cell Segmentation of MIF and H&amp;E images with Cellpose in Python - WIP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -280,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-22</p>
+      <p class="date">2025-10-29</p>
     </div>
   </div>
   
@@ -406,7 +413,7 @@ From initial startup screen
 </figure>
 </div>
 <p>After running the demo code, you get:</p>
-<div id="29a374f3" class="cell" data-execution_count="1">
+<div id="8fbc4a77" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
@@ -440,7 +447,7 @@ x - y = 8</code></pre>
 </section>
 <section id="congratulations" class="level1">
 <h1>Congratulations</h1>
-<p>If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to do Things(tm) in Python (aka python data structures and object-oriented vs functional programming).</p>
+<p>If you followed the tutorial up to this point, you can now run a python script on your computer! The next tutorial will cover installing packages, virtual environments and a brief intro of how to Do Things in Python (aka python data structures and object-oriented vs functional programming).</p>
 <section id="step-4-optional-ssh-to-host-positron" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-optional-ssh-to-host-positron">Step 4 (Optional): SSH to Host (Positron)</h2>
 <p>If you work with an internal server/compute cluster that you access via SSH (if this does not apply to you feel free to skip this part), you can connect to it via Remote-SSH in Positron. Please note that this will only work if you have the correct permissions for the remote host!</p>

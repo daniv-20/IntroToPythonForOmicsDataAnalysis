@@ -1,0 +1,142 @@
+---
+title: "Working with Tiff files"
+author: "Dani V"
+---
+
+## TIFF Files
+TIFF (Tagged Image File Format) files are often used in imaging/microscopy and can be up to multible Gb in size, which can make them annoying to work with. Here are some things you might find useful when working with large TIFF files. TIFF files store images as grids of pizels and can contain multiple sub-images or layers within a single file. In image data like MxIF or H&E images, different channels can be stored on different layers. 
+
+## OME-TIFF
+An OME-TIFF (.ome.tiff/.ome.tif) is a TIFF-based format developed by the [Open Microscopy Environment (OME) consortium](https://www.openmicroscopy.org/) as a standard format for supporting microscopy images with metadata (ex: channels, z-stacks, multiple timepoints, px-to-micron conversion factor). 
+
+## Pyramidal TIFF
+Some TIFF images (called pyramid or multi-resolution tiffs) have the same image stored at multiple resolutions within the same file. This is typically done for very large images (like full-slide images) to allow users to quickly render a downsampled version of the image for easy viewing and load higher resolution versions of the image only when necessary. 
+
+
+## Example Code for working with TIFF images
+Below are some example functions and script fragments that may be useful when working with pyramidal tiff images. 
+
+### Example images
+Below are some example TIFF or OME TIFF images that can be used for testing: 
+Some example OME tiff images can be found here: https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html.   
+
+For larger test images, the LuCa-7color images are good options: https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html  
+
+### Extract Downscaled images
+To read in tiff images and extract the downscaled versions, we can use the following code. 
+[Dependencies: `tifffile`, `imagecodecs`].
+
+```{{python}}
+#| eval: true
+#!/usr/bin/env python3
+import os
+import tifffile
+import numpy as np
+
+def read_pyramid_level(tiff_path, level=1):
+    """
+    Read a specified pyramid (downscale) level from an OME-TIFF file.
+    level = 0 → full resolution, level = 1 → first downscale, etc.
+    Returns: (image_array, resolution_info)
+    """
+    with tifffile.TiffFile(tiff_path) as tif:
+        series = tif.series[0]
+        if hasattr(series, 'levels'):
+            levels = series.levels
+            if level < len(levels):
+                arr = levels[level].asarray()
+                info = {
+                    'shape': arr.shape,
+                    'level_index': level,
+                    'total_levels': len(levels)
+                }
+                return arr, info
+            else:
+                raise IndexError(f"Pyramid level {level} not found; only {len(levels)} levels available.")
+        else:
+            raise ValueError("No pyramid levels stored in this file.")
+```
+
+### To read downscaled image and display in python
+Requres `read_pyramid_level()` above. Image - See Ljosa V, Sokolnicki KL, Carpenter AE (2012). Annotated high-throughput microscopy image sets for validation. Nature Methods 9(7):637.
+
+```{{python}}
+#| eval: true
+import os
+import tifffile
+import numpy as np
+import matplotlib.pyplot as plt
+
+def view_image(array, title=None, cmap=None):
+    """
+    Display a numpy image array using matplotlib.
+    Automatically handles grayscale vs color.
+    """
+    plt.figure(figsize=(8,8))
+    if cmap is None:
+        # choose grayscale if 2D
+        cmap_choice = 'gray' if array.ndim == 2 else None
+    else:
+        cmap_choice = cmap
+    plt.imshow(array, cmap=cmap_choice)
+    plt.axis('off')
+    if title:
+        plt.title(title)
+    plt.show()
+
+if __name__ == "__main__":
+    path = "quarto\NIRHTa-001.ome.tiff"
+    level_to_show = 1  # change as needed
+
+    try:
+        img_down, info = read_pyramid_level(path, level=level_to_show)
+        print(f"Showing level {info['level_index']} of {info['total_levels']} (shape = {info['shape']})")
+        view_image(img_down, title=f"Down-scale level {info['level_index']}")
+    except Exception as e:
+        print("Error reading/displaying image:", e)
+
+
+```
+
+
+### To save downscaled images as separate tiff files
+Requres `read_pyramid_level()` above. 
+
+```{{python}}
+#| eval: false
+import os
+import tifffile
+import numpy as np
+def process_directory(base_folder, out_folder, level=1, extensions=('.tif','.tiff','.ome.tiff','.ome.tif')):
+    """
+    Walks through base_folder, finds files with given extensions, reads the requested pyramid level,
+    and writes a downscaled image (or otherwise reports error).
+    """
+    os.makedirs(out_folder, exist_ok=True)
+    for root, dirs, files in os.walk(base_folder):
+        for fname in files:
+            if fname.lower().endswith(extensions):
+                in_path = os.path.join(root, fname)
+                rel = os.path.relpath(in_path, base_folder)
+                out_sub = os.path.join(out_folder, os.path.dirname(rel))
+                os.makedirs(out_sub, exist_ok=True)
+                out_name = os.path.splitext(os.path.basename(rel))[0] + f"_level{level}.tif"
+                out_path = os.path.join(out_sub, out_name)
+                try:
+                    img_down, info = read_pyramid_level(in_path, level=level)
+                    print(f"Read {in_path} → level {info['level_index']}/{info['total_levels']-1}, shape={info['shape']}")
+                    # Write the result (you might want to adjust dtype/compression etc)
+                    tifffile.imwrite(out_path, img_down, compression='zlib') # <1>
+                    print(f"Wrote downscaled image to {out_path}")
+                except Exception as e:
+                    print(f"Error processing {in_path}: {e}")
+
+if __name__ == "__main__":
+    base_folder = "Image_Directory" ## directory where the tiff images are stored
+    out_folder  = "Downscaled_Levels"
+    level_to_extract = 1  # change as desired: 0 = full res, 1 = first downscale
+    process_directory(base_folder, out_folder, level=level_to_extract)
+
+
+```
+1. Include this line to write the downscaled image to a new tiffile

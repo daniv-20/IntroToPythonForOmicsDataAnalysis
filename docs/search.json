@@ -86,5 +86,40 @@
     "title": "Reference Parking Lot",
     "section": "Segmentation",
     "text": "Segmentation\ncellpose. Supposedly better than stardist in some cases. Still investigating this."
+  },
+  {
+    "objectID": "WorkingWithTiffs.html",
+    "href": "WorkingWithTiffs.html",
+    "title": "Working with Tiff files",
+    "section": "",
+    "text": "TIFF (Tagged Image File Format) files are often used in imaging/microscopy and can be up to multible Gb in size, which can make them annoying to work with. Here are some things you might find useful when working with large TIFF files. TIFF files store images as grids of pizels and can contain multiple sub-images or layers within a single file. In image data like MxIF or H&E images, different channels can be stored on different layers."
+  },
+  {
+    "objectID": "WorkingWithTiffs.html#tiff-files",
+    "href": "WorkingWithTiffs.html#tiff-files",
+    "title": "Working with Tiff files",
+    "section": "",
+    "text": "TIFF (Tagged Image File Format) files are often used in imaging/microscopy and can be up to multible Gb in size, which can make them annoying to work with. Here are some things you might find useful when working with large TIFF files. TIFF files store images as grids of pizels and can contain multiple sub-images or layers within a single file. In image data like MxIF or H&E images, different channels can be stored on different layers."
+  },
+  {
+    "objectID": "WorkingWithTiffs.html#ome-tiff",
+    "href": "WorkingWithTiffs.html#ome-tiff",
+    "title": "Working with Tiff files",
+    "section": "OME-TIFF",
+    "text": "OME-TIFF\nAn OME-TIFF (.ome.tiff/.ome.tif) is a TIFF-based format developed by the Open Microscopy Environment (OME) consortium as a standard format for supporting microscopy images with metadata (ex: channels, z-stacks, multiple timepoints, px-to-micron conversion factor)."
+  },
+  {
+    "objectID": "WorkingWithTiffs.html#pyramidal-tiff",
+    "href": "WorkingWithTiffs.html#pyramidal-tiff",
+    "title": "Working with Tiff files",
+    "section": "Pyramidal TIFF",
+    "text": "Pyramidal TIFF\nSome TIFF images (called pyramid or multi-resolution tiffs) have the same image stored at multiple resolutions within the same file. This is typically done for very large images (like full-slide images) to allow users to quickly render a downsampled version of the image for easy viewing and load higher resolution versions of the image only when necessary."
+  },
+  {
+    "objectID": "WorkingWithTiffs.html#example-code-for-working-with-tiff-images",
+    "href": "WorkingWithTiffs.html#example-code-for-working-with-tiff-images",
+    "title": "Working with Tiff files",
+    "section": "Example Code for working with TIFF images",
+    "text": "Example Code for working with TIFF images\nBelow are some example functions and script fragments that may be useful when working with pyramidal tiff images.\n\nExample images\nBelow are some example TIFF or OME TIFF images that can be used for testing: Some example OME tiff images can be found here: https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html.\nFor larger test images, the LuCa-7color images are good options: https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html\n\n\nExtract Downscaled images\nTo read in tiff images and extract the downscaled versions, we can use the following code. [Dependencies: tifffile, imagecodecs].\n```{python}\n#| eval: true\n#!/usr/bin/env python3\nimport os\nimport tifffile\nimport numpy as np\n\ndef read_pyramid_level(tiff_path, level=1):\n    \"\"\"\n    Read a specified pyramid (downscale) level from an OME-TIFF file.\n    level = 0 → full resolution, level = 1 → first downscale, etc.\n    Returns: (image_array, resolution_info)\n    \"\"\"\n    with tifffile.TiffFile(tiff_path) as tif:\n        series = tif.series[0]\n        if hasattr(series, 'levels'):\n            levels = series.levels\n            if level &lt; len(levels):\n                arr = levels[level].asarray()\n                info = {\n                    'shape': arr.shape,\n                    'level_index': level,\n                    'total_levels': len(levels)\n                }\n                return arr, info\n            else:\n                raise IndexError(f\"Pyramid level {level} not found; only {len(levels)} levels available.\")\n        else:\n            raise ValueError(\"No pyramid levels stored in this file.\")\n```\n\n\nTo read downscaled image and display in python\nRequres read_pyramid_level() above.\n```{python}\n#| eval: true\nimport os\nimport tifffile\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef view_image(array, title=None, cmap=None):\n    \"\"\"\n    Display a numpy image array using matplotlib.\n    Automatically handles grayscale vs color.\n    \"\"\"\n    plt.figure(figsize=(8,8))\n    if cmap is None:\n        # choose grayscale if 2D\n        cmap_choice = 'gray' if array.ndim == 2 else None\n    else:\n        cmap_choice = cmap\n    plt.imshow(array, cmap=cmap_choice)\n    plt.axis('off')\n    if title:\n        plt.title(title)\n    plt.show()\n\nif __name__ == \"__main__\":\n    path = \"quarto\\NIRHTa-001.ome.tiff\"\n    level_to_show = 1  # change as needed\n\n    try:\n        img_down, info = read_pyramid_level(path, level=level_to_show)\n        print(f\"Showing level {info['level_index']} of {info['total_levels']} (shape = {info['shape']})\")\n        view_image(img_down, title=f\"Down-scale level {info['level_index']}\")\n    except Exception as e:\n        print(\"Error reading/displaying image:\", e)\n\n\n```\n\n\nTo save downscaled images as separate tiff files\nRequres read_pyramid_level() above.\n```{python}\n#| eval: false\nimport os\nimport tifffile\nimport numpy as np\ndef process_directory(base_folder, out_folder, level=1, extensions=('.tif','.tiff','.ome.tiff','.ome.tif')):\n    \"\"\"\n    Walks through base_folder, finds files with given extensions, reads the requested pyramid level,\n    and writes a downscaled image (or otherwise reports error).\n    \"\"\"\n    os.makedirs(out_folder, exist_ok=True)\n    for root, dirs, files in os.walk(base_folder):\n        for fname in files:\n            if fname.lower().endswith(extensions):\n                in_path = os.path.join(root, fname)\n                rel = os.path.relpath(in_path, base_folder)\n                out_sub = os.path.join(out_folder, os.path.dirname(rel))\n                os.makedirs(out_sub, exist_ok=True)\n                out_name = os.path.splitext(os.path.basename(rel))[0] + f\"_level{level}.tif\"\n                out_path = os.path.join(out_sub, out_name)\n                try:\n                    img_down, info = read_pyramid_level(in_path, level=level)\n                    print(f\"Read {in_path} → level {info['level_index']}/{info['total_levels']-1}, shape={info['shape']}\")\n                    # Write the result (you might want to adjust dtype/compression etc)\n1                    tifffile.imwrite(out_path, img_down, compression='zlib')\n                    print(f\"Wrote downscaled image to {out_path}\")\n                except Exception as e:\n                    print(f\"Error processing {in_path}: {e}\")\n\nif __name__ == \"__main__\":\n    base_folder = \"Image_Directory\" ## directory where the tiff images are stored\n    out_folder  = \"Downscaled_Levels\"\n    level_to_extract = 1  # change as desired: 0 = full res, 1 = first downscale\n    process_directory(base_folder, out_folder, level=level_to_extract)\n\n```\n\n1\n\nInclude this line to write the downscaled image to a new tiffile"
   }
 ]

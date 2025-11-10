@@ -1,6 +1,13 @@
 ---
 title: "Working with Tiff files"
 author: "Dani V"
+format: 
+  html:
+    toc: true
+execute: 
+  echo: fenced
+  eval: false
+  freeze: auto
 ---
 
 ## TIFF Files
@@ -26,7 +33,7 @@ For larger test images, the LuCa-7color images are good options: https://qupath.
 To read in tiff images and extract the downscaled versions, we can use the following code. 
 [Dependencies: `tifffile`, `imagecodecs`].
 
-```{{python}}
+```{python}
 #| eval: true
 #!/usr/bin/env python3
 import os
@@ -58,10 +65,9 @@ def read_pyramid_level(tiff_path, level=1):
 ```
 
 ### To read downscaled image and display in python
-Requres `read_pyramid_level()` above. Image - See Ljosa V, Sokolnicki KL, Carpenter AE (2012). Annotated high-throughput microscopy image sets for validation. Nature Methods 9(7):637.
+Requres `read_pyramid_level()` above. 
 
-```{{python}}
-#| eval: true
+```{python}
 import os
 import tifffile
 import numpy as np
@@ -85,7 +91,7 @@ def view_image(array, title=None, cmap=None):
     plt.show()
 
 if __name__ == "__main__":
-    path = "quarto\NIRHTa-001.ome.tiff"
+    path = "path/to/tiff"
     level_to_show = 1  # change as needed
 
     try:
@@ -102,7 +108,7 @@ if __name__ == "__main__":
 ### To save downscaled images as separate tiff files
 Requres `read_pyramid_level()` above. 
 
-```{{python}}
+```{python}
 #| eval: false
 import os
 import tifffile
@@ -140,3 +146,78 @@ if __name__ == "__main__":
 
 ```
 1. Include this line to write the downscaled image to a new tiffile
+
+### To make a pyramidal tiff out of a non-pyramid tiff
+If you do not have a pyramid tiff, you can make one by calculating multiple resolutions 
+
+```{python}
+import numpy as np
+from tifffile import imread, TiffWriter
+from skimage.transform import rescale
+
+in_path = "input.tif"
+out_path = "output_pyramid.tif"
+
+# --------------------------------------
+# 1. Read input TIFF
+# --------------------------------------
+img = imread(in_path)  # shape (Y, X) or (Y, X, C)
+print("Input shape:", img.shape)
+
+# Ensure float for rescaling, then cast back later
+img = img.astype("float32")
+
+# --------------------------------------
+# 2. Build pyramid levels
+#    e.g. full, 1/2, 1/4, 1/8
+# --------------------------------------
+scales = [1.0, 0.5, 0.25, 0.125]  # you can change this
+levels = []
+
+for s in scales:
+    if s == 1.0:
+        level = img
+    else:
+        # rescale spatial dims; preserve_range keeps original intensity scale
+        level = rescale(
+            img,
+            scale=(s, s, 1) if img.ndim == 3 else (s, s),
+            anti_aliasing=True,
+            preserve_range=True,
+        ).astype("float32")
+    levels.append(level)
+    print(f"Level scale {s}: shape {level.shape}")
+
+# Cast back to a suitable dtype (e.g. uint8 or uint16)
+# Here I assume uint8; adapt if your data is 16-bit
+levels = [np.clip(lvl, 0, 255).astype("uint8") for lvl in levels]
+
+# --------------------------------------
+# 3. Write pyramidal TIFF using tifffile
+# --------------------------------------
+# - tile=(256, 256) creates a tiled image (better for large images)
+# - subifds=len(levels)-1 declares the number of subresolution images
+# - subsequent writes use subfiletype=1 to mark them as reduced-resolution
+# --------------------------------------
+
+with TiffWriter(out_path, bigtiff=True) as tif:
+    # Write the full-res level, declare subIFDs
+    tif.write(
+        data=levels[0],
+        tile=(256, 256),
+        subifds=len(levels) - 1,
+        photometric="rgb" if (img.ndim == 3 and img.shape[-1] in (3, 4)) else "minisblack",
+    )
+
+    # Write each lower-res level as a subIFD
+    for lvl in levels[1:]:
+        tif.write(
+            data=lvl,
+            tile=(256, 256),
+            subfiletype=1,  # reduced-resolution
+            photometric="rgb" if (img.ndim == 3 and img.shape[-1] in (3, 4)) else "minisblack",
+        )
+
+print("Saved pyramidal TIFF to:", out_path)
+
+```
